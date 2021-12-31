@@ -17,11 +17,11 @@ void main() {
       routes: {
         'register': (context) => MyRegister(),
         'login': (context) => MyLogin(),
-        'addcomp' : (context) => AddComponent(),
+        //'addcomp' : (context) => AddComponent(),
         'menu': (context) => Menu(),
         'memberlist': (context) => MemberList(),
         'categorylist': (context) => CategoryList(),
-        'componentlist': (context) => ComponentList(),
+        //'componentlist': (context) => ComponentList(),
         'addcateg': (context) => AddCateg(),
         'addmem' : (context) => AddMembre(),
       },

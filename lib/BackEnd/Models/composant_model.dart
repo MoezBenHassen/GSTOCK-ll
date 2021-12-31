@@ -7,7 +7,7 @@ import 'package:sqflite/sqflite.dart';
   class Composant{
     final int? id;
     final String name;
-    final String obtenue;
+    final DateTime obtenue;
     final int stock;
     final int category;
 
@@ -22,7 +22,7 @@ import 'package:sqflite/sqflite.dart';
     Map<String, dynamic> toMap(){
       return{
         'name' : name,
-        'obtenue' : obtenue,//.toIso8601String(),
+        'obtenue' : obtenue.toIso8601String(),
         'stock' : stock,
         'FK_category' : category,
       };

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:gstock/BackEnd/Models/composant_model.dart';
 import 'package:gstock/BackEnd/database_creation.dart';
 
+import 'add_composants.dart';
 import 'edit_composants.dart';
 
 
 class ComponentList extends StatefulWidget {
-  //const ComponentList({Key? key}) : super(key: key);
-  //final int id;
 
-  const ComponentList({Key? key}): super(key: key);
+  final int id;
+
+  const ComponentList({Key? key, required this.id}): super(key: key);
 
 
 
@@ -31,7 +33,7 @@ class _ComponentListState extends State<ComponentList> {
       compList.add({
         'id' : element.id,
         'name' : element.name,
-        'obtenue' : element.obtenue,
+        'obtenue' : element.obtenue.toIso8601String(),
         'stock' : element.stock,
         'category': element.category,
       });}
@@ -87,28 +89,42 @@ class _ComponentListState extends State<ComponentList> {
             Column(
               children: compList.map((comp){
                 return Card(
-                  child: ListTile(
+                  child: ExpansionTile(
                     title: Text(comp['name']),
-                    trailing: Wrap(children: [
-                      IconButton(
-                          onPressed: (){
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) =>
-                                    ComponentEdit(
-                                        id: comp['id'],
-                                        name: comp['name'],
-                                        obtenue: comp['obtenue'],
-                                        stock: comp['stock'],
-                                        category: comp['category'])));
-                          }, icon: Icon(Icons.edit)),
+                    trailing: Wrap(
+                      children: [
+                        IconButton(
+                            onPressed: (){
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ComponentEdit(
+                                        comp: Composant(
+                                          id: comp['id'],
+                                          name: comp['name'],
+                                          obtenue: DateTime.parse(comp['obtenue']),
+                                          stock: comp['stock'],
+                                          category: comp['category'],),
+                                      id : widget.id)));
+                            }, icon: Icon(Icons.edit)),
 
 
-                      IconButton(
-                          onPressed: (){
-                            Dbcreate().deleteComp(comp['id']);
-                            Navigator.pushNamed(context, 'componentlist');
-                          }, icon: Icon(Icons.delete, color: Colors.red,)),
-                    ],),
+                        IconButton(
+                            onPressed: (){
+                              Dbcreate().deleteComp(comp['id']);
+                              Navigator.push(
+                                context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                    ComponentList(id: widget.id)));
+                            }, icon: Icon(Icons.delete, color: Colors.red,
+                        )),
+                      ],
+                    ),
+                    children: <Widget>[
+                      Text('stock: '+comp['stock'].toString()),
+                      Text('Date: ' +comp['obtenue'].toString().replaceRange(10, comp['obtenue'].length, '')),
+                    ],
                   ),
                 );
               }).toList(),
@@ -118,7 +134,10 @@ class _ComponentListState extends State<ComponentList> {
       floatingActionButton: FloatingActionButton(
         child : const Icon(Icons.add),
         onPressed:(){
-          Navigator.pushNamed(context,'addcomp');
+          Navigator.push(context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      AddComponent(id: widget.id)));
         },
       ),
     );

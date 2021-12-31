@@ -82,17 +82,23 @@ class _CategoryListState extends State<CategoryList> {
                         onPressed: (){
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) =>
-                                  CategoryEdit(id: categ['id'], name: categ['name'])));
+                                  CategoryEdit(
+                                      id: categ['id'],
+                                      name: categ['name']
+                                  )));
                         }, icon: Icon(Icons.edit)),
+
                     IconButton(
                         onPressed: (){
                           Dbcreate().deleteCateg(categ['id']);
                           Navigator.pushNamed(context, 'categorylist');
                         }, icon: Icon(Icons.delete, color: Colors.red,)),
+
                     IconButton(
                         onPressed: (){
-
-                          Navigator.pushNamed(context, 'componentlist',arguments: categ['id']);
+                          Navigator.push(context, MaterialPageRoute(builder:
+                              (context) => ComponentList(id: categ['id'],
+                              )));
                         }, icon: Icon(Icons.apps)),
                   ],),
                 ),

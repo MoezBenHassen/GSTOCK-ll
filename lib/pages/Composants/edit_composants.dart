@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gstock/BackEnd/Models/composant_model.dart';
 import 'package:gstock/BackEnd/database_creation.dart';
+import 'package:gstock/pages/Composants/list_composants.dart';
 
 class ComponentEdit extends StatefulWidget {
   final int id;
-  final String name;
-  final String obtenue;
-  final int stock;
-  final int category;
+  final Composant comp;
 
 
   const ComponentEdit({
     Key? key,
     required this.id,
-    required this.name,
-    required this.obtenue,
-    required this.stock,
-    required this.category
+    required this.comp,
   }): super(key: key);
 
   @override
@@ -26,9 +21,9 @@ class ComponentEdit extends StatefulWidget {
 class _ComponentEditState extends State<ComponentEdit> {
 
   TextEditingController nameController = TextEditingController();
-  TextEditingController obtenueController = TextEditingController();
   TextEditingController stockController = TextEditingController();
-  TextEditingController categoryController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  DateTime selectedDate = DateTime.now();
 
 
   @override
@@ -38,9 +33,10 @@ class _ComponentEditState extends State<ComponentEdit> {
   }
 
   getData(){
-    nameController.text = widget.name;
-    obtenueController.text = widget.obtenue;
-    //stockController.value = widget.stock as TextEditingValue;
+    nameController.text = widget.comp.name;
+    stockController.text = widget.comp.stock.toString();
+    dateController.text= widget.comp.obtenue.toString();
+    selectedDate = widget.comp.obtenue;
     //categoryController.value = widget.category as TextEditingValue;
   }
 
@@ -83,24 +79,25 @@ class _ComponentEditState extends State<ComponentEdit> {
             controller: nameController,
           ),
           TextField(
-            controller: obtenueController,
+            controller: dateController,
           ),
           TextField(
             controller: stockController,
           ),
-          TextField(
-            controller: categoryController,
-          ),
+
           ElevatedButton(
               onPressed: () {
-                var comp = Composant(
+                Composant comp = Composant(
                     name: nameController.text,
-                    obtenue: obtenueController.text,
+                    obtenue: selectedDate,
                     stock: int.parse(stockController.text),
-                    category: int.parse(categoryController.text)
+                    category: widget.id,
                     );
-                Dbcreate().updateComp(widget.id, comp);
-                Navigator.pushNamed(context, 'componentlist');
+                Dbcreate().updateComp(widget.comp.id!, comp);
+                Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                    ComponentList(id: widget.id)));
               },
               child: Text('Edit Component'))
         ]),
