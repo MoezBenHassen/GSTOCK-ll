@@ -158,7 +158,7 @@ class Dbcreate {
       return Composant(
         id: maps[i]['id'],
         name: maps[i]['name'],
-        obtenue: DateTime.parse(maps[i]['obtenue'])∑,
+        obtenue: DateTime.parse(maps[i]['obtenue']),
         stock: maps[i]['stock'],
         category: maps[i]['FK_category'],
       );
