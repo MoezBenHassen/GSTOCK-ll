@@ -13,7 +13,7 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Menu(),
+      home: MyLogin(),
       routes: {
         'register': (context) => MyRegister(),
         'login': (context) => MyLogin(),
@@ -22,8 +22,8 @@ void main() {
         'memberlist': (context) => MemberList(),
         'categorylist': (context) => CategoryList(),
         //'componentlist': (context) => ComponentList(),
-        'addcateg': (context) => AddCateg(),
-        'addmem' : (context) => AddMembre(),
+        //'addcateg': (context) => AddCateg(),
+        //'addmem' : (context) => AddMembre(),
       },
     )
   );

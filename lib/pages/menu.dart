@@ -12,6 +12,7 @@ class _MenuState extends State<Menu> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xFFFF7643),
           title: const Text('Home Menu'),
         ),
         body: Center(

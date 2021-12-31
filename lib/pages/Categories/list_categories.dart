@@ -35,7 +35,7 @@ class _CategoryListState extends State<CategoryList> {
             children: [
               const DrawerHeader(
                 decoration : BoxDecoration(
-                  color : Colors.blue,
+                  color : Color(0xFFFF7643),
                 ),
                 child : Text ("Menu"),
               ),
@@ -54,8 +54,12 @@ class _CategoryListState extends State<CategoryList> {
             ],
           )
       ),
+
       appBar: AppBar(
+        //foregroundColor: Color(0xFFFF7643),
+        backgroundColor: Color(0xFFFF7643),
         title: const Text('Categories'),
+
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20.0),
@@ -77,6 +81,15 @@ class _CategoryListState extends State<CategoryList> {
               return Card(
                 child: ListTile(
                   title: Text(categ['name']),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(
+                        builder:
+                          (context) => ComponentList(
+                            id: categ['id'],
+                          )));
+                            print(categ['id']);
+                          },
+
                   trailing: Wrap(children: [
                     IconButton(
                         onPressed: (){
@@ -94,12 +107,7 @@ class _CategoryListState extends State<CategoryList> {
                           Navigator.pushNamed(context, 'categorylist');
                         }, icon: Icon(Icons.delete, color: Colors.red,)),
 
-                    IconButton(
-                        onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder:
-                              (context) => ComponentList(id: categ['id'],
-                              )));
-                        }, icon: Icon(Icons.apps)),
+
                   ],),
                 ),
               );

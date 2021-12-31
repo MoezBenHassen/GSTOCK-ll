@@ -21,7 +21,7 @@ class _AddCategState extends State<AddCateg> {
             children: [
               const DrawerHeader(
                 decoration : BoxDecoration(
-                  color : Colors.blue,
+                  color : Color(0xFFFF7643),
                 ),
                 child : Text ("Menu"),
               ),
@@ -41,6 +41,7 @@ class _AddCategState extends State<AddCateg> {
           )
       ),
       appBar: AppBar(
+        backgroundColor: Color(0xFFFF7643),
         title: Text('Add Category'),
       ),
       body: Container(

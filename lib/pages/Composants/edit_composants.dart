@@ -49,7 +49,7 @@ class _ComponentEditState extends State<ComponentEdit> {
             children: [
               const DrawerHeader(
                 decoration : BoxDecoration(
-                  color : Colors.blue,
+                  color : Color(0xFFFF7643),
                 ),
                 child : Text ("Menu"),
               ),
@@ -70,6 +70,7 @@ class _ComponentEditState extends State<ComponentEdit> {
           )
       ),
       appBar: AppBar(
+        backgroundColor: Color(0xFFFF7643),
         title: Text('Edit Component'),
       ),
       body: Container(

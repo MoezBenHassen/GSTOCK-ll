@@ -42,7 +42,7 @@ class _MemberListState extends State<MemberList> {
           children: [
             const DrawerHeader(
               decoration : BoxDecoration(
-                color : Colors.blue,
+                color : Color(0xFFFF7643),
               ),
               child : Text ("Menu"),
             ),
@@ -62,6 +62,7 @@ class _MemberListState extends State<MemberList> {
         )
       ),
       appBar: AppBar(
+        backgroundColor: Color(0xFFFF7643),
         title: const Text('Members'),
         actions: [
           Padding(

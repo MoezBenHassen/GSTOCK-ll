@@ -25,7 +25,7 @@ class _AddMembreState extends State<AddMembre> {
             children: [
               const DrawerHeader(
                 decoration : BoxDecoration(
-                  color : Colors.blue,
+                  color : Color(0xFFFF7643),
                 ),
                 child : Text ("Menu"),
               ),
@@ -45,6 +45,7 @@ class _AddMembreState extends State<AddMembre> {
           )
       ),
       appBar: AppBar(
+        backgroundColor: Color(0xFFFF7643),
         title: Text('Add Membre'),
       ),
       body: Container(

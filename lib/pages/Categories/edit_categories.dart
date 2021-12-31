@@ -36,7 +36,7 @@ class _CategoryEditState extends State<CategoryEdit> {
             children: [
               const DrawerHeader(
                 decoration : BoxDecoration(
-                  color : Colors.blue,
+                  color : Color(0xFFFF7643),
                 ),
                 child : Text ("Menu"),
               ),
@@ -57,6 +57,7 @@ class _CategoryEditState extends State<CategoryEdit> {
           )
       ),
       appBar: AppBar(
+        backgroundColor: Color(0xFFFF7643),
         title: Text('Edit Category'),
       ),
       body: Container(

@@ -9,9 +9,7 @@ import 'edit_composants.dart';
 class ComponentList extends StatefulWidget {
 
   final int id;
-
   const ComponentList({Key? key, required this.id}): super(key: key);
-
 
 
   @override
@@ -30,13 +28,16 @@ class _ComponentListState extends State<ComponentList> {
   getData() async {
     var list = await Dbcreate().fetchComp();
     for (var element in list) {
-      compList.add({
-        'id' : element.id,
-        'name' : element.name,
-        'obtenue' : element.obtenue.toIso8601String(),
-        'stock' : element.stock,
-        'category': element.category,
-      });}
+      if (element.category == widget.id) {
+        compList.add({
+          'id': element.id,
+          'name': element.name,
+          'obtenue': element.obtenue.toIso8601String(),
+          'stock': element.stock,
+          'category': element.category,
+        });
+      }
+    }
     setState(() {});
   }
 
@@ -49,7 +50,7 @@ class _ComponentListState extends State<ComponentList> {
             children: [
               const DrawerHeader(
                 decoration : BoxDecoration(
-                  color : Colors.blue,
+                  color : Color(0xFFFF7643),
                 ),
                 child : Text ("Menu"),
               ),
@@ -69,6 +70,7 @@ class _ComponentListState extends State<ComponentList> {
           )
       ),
       appBar: AppBar(
+        backgroundColor: Color(0xFFFF7643),
         title: const Text('Components'),
         actions: [
           Padding(
@@ -94,6 +96,13 @@ class _ComponentListState extends State<ComponentList> {
                     trailing: Wrap(
                       children: [
                         IconButton(
+                          onPressed: () => {
+                            print(compList),
+                            print ('id :'+ widget.id.toString())
+                          },
+                          icon: Icon(Icons.category)
+                        ),
+                        IconButton(
                             onPressed: (){
                               Navigator.push(
                                   context,
@@ -104,8 +113,9 @@ class _ComponentListState extends State<ComponentList> {
                                           name: comp['name'],
                                           obtenue: DateTime.parse(comp['obtenue']),
                                           stock: comp['stock'],
-                                          category: comp['category'],),
-                                      id : widget.id)));
+                                          category: comp['category'],
+                                        ),
+                                          id : widget.id)));
                             }, icon: Icon(Icons.edit)),
 
 
