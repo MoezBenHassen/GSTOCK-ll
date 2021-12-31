@@ -15,13 +15,18 @@ class _AddCategState extends State<AddCateg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       drawer : Drawer (
           child : ListView(
             padding : EdgeInsets.zero,
             children: [
-              const DrawerHeader(
+              DrawerHeader(
                 decoration : BoxDecoration(
-                  color : Color(0xFFFF7643),
+                  gradient : LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[Color(0xFFFFA53E), Color(0xFFFF7643)],
+                  ),
                 ),
                 child : Text ("Menu"),
               ),
@@ -52,12 +57,19 @@ class _AddCategState extends State<AddCateg> {
             decoration: InputDecoration(hintText: 'Category Name'),
           ),
           ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size.fromWidth(300),
+                textStyle: const TextStyle(fontSize: 20),
+                padding: const EdgeInsets.all(16),
+                primary: Color(0xFFFF7643),
+              ),
               onPressed: () {
                 var categ = Category(name: nameController.text);
                 Dbcreate().insertCateg(categ);
                 Navigator.pushNamed(context, 'categorylist');
               },
-              child: Text('Save Category'))
+              child: Text('Save Category')),
+
         ]),
       ),
     );

@@ -22,8 +22,8 @@ void main() {
         'memberlist': (context) => MemberList(),
         'categorylist': (context) => CategoryList(),
         //'componentlist': (context) => ComponentList(),
-        //'addcateg': (context) => AddCateg(),
-        //'addmem' : (context) => AddMembre(),
+        'addcateg': (context) => AddCateg(),
+        'addmem' : (context) => AddMembre(),
       },
     )
   );

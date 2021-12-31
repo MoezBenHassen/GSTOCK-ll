@@ -50,7 +50,11 @@ class _ComponentListState extends State<ComponentList> {
             children: [
               const DrawerHeader(
                 decoration : BoxDecoration(
-                  color : Color(0xFFFF7643),
+                  gradient : LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[Color(0xFFFFA53E), Color(0xFFFF7643)],
+                  ),
                 ),
                 child : Text ("Menu"),
               ),
@@ -143,6 +147,7 @@ class _ComponentListState extends State<ComponentList> {
       ),
       floatingActionButton: FloatingActionButton(
         child : const Icon(Icons.add),
+        backgroundColor: Color(0xFFFF7643),
         onPressed:(){
           Navigator.push(context,
               MaterialPageRoute(

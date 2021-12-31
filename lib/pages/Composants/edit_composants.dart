@@ -49,7 +49,11 @@ class _ComponentEditState extends State<ComponentEdit> {
             children: [
               const DrawerHeader(
                 decoration : BoxDecoration(
-                  color : Color(0xFFFF7643),
+                  gradient : LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[Color(0xFFFFA53E), Color(0xFFFF7643)],
+                  ),
                 ),
                 child : Text ("Menu"),
               ),
@@ -87,6 +91,12 @@ class _ComponentEditState extends State<ComponentEdit> {
           ),
 
           ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size.fromWidth(300),
+                textStyle: const TextStyle(fontSize: 20),
+                padding: const EdgeInsets.all(16),
+                primary: Color(0xFFFF7643),
+              ),
               onPressed: () {
                 Composant comp = Composant(
                     name: nameController.text,
