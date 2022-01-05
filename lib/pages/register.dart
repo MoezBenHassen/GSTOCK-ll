@@ -37,7 +37,7 @@ class _MyRegisterState extends State<MyRegister> {
                         children: [
                           TextField(
                             controller: nameController,
-                            style: TextStyle(color: Color(0xFF2C2F33)),
+                            style: TextStyle(color: Color(0xFF000000)),
                             decoration: InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -59,7 +59,7 @@ class _MyRegisterState extends State<MyRegister> {
                           ),
                           TextField(
                             controller: passwordController,
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Color(0xFF000000)),
                             obscureText: true,
                             decoration: InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
@@ -85,7 +85,7 @@ class _MyRegisterState extends State<MyRegister> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                'Sign Up',
+                                'Sign Up  ',
                                 style: TextStyle(
                                     color: Color(0xFF2C2F33),
                                     fontSize: 18,
@@ -100,6 +100,7 @@ class _MyRegisterState extends State<MyRegister> {
                                       var admin = Admin(name: nameController.text,
                                           password: passwordController.text);
                                       Dbcreate().insertAdmin(admin);
+                                      Navigator.pushNamed(context, 'login');
                                     },
                                     icon: Icon(
                                       Icons.arrow_forward_ios,
