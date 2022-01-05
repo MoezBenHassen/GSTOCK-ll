@@ -4,9 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gstock/BackEnd/Models/admin_model.dart';
 import 'package:gstock/BackEnd/Models/category_model.dart';
 import 'package:gstock/BackEnd/Models/composant_model.dart';
-import 'package:gstock/BackEnd/Models/emprunt_model.dart';
 import 'package:gstock/BackEnd/Models/membre_model.dart';
-import 'package:gstock/BackEnd/Models/retour_model.dart';
 import 'dart:async';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
@@ -230,92 +228,4 @@ class Dbcreate {
         .update("membre", item.toMap(), where: "id = ?", whereArgs: [id]);
     return result;
   }
-
-//------------------[EMPRUNT  FUNCTIONS]------------------
-  Future<int> insertEmp(Emprunt emprunt) async {
-    final db = await main();
-    return db.insert(
-      'emprunt',
-      emprunt.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
-  Future<List<Emprunt>> fetchEmp() async {
-    final db = await main();
-    final List<Map<String, dynamic>> maps = await db.query('emprunt');
-    return List.generate(maps.length, (i) {
-      return Emprunt(
-        id: maps[i]['id'],
-        composant: maps[i]['FK_composant'],
-        date: maps[i]['date'],
-      );
-    });
-  }
-
-  Future<int> deleteEmp(int id) async {
-    //returns number of items deleted
-    final db = await main();
-
-    int result = await db.delete("emprunt", //table name
-        where: "id = ?",
-        whereArgs: [id] // use whereArgs to avoid SQL injection
-    );
-    return result;
-  }
-
-  Future<int> updateEmp(int id, Emprunt item) async {
-    // returns the number of rows updated
-
-    final db = await main();
-
-    int result = await db
-        .update("emprunt", item.toMap(), where: "id = ?", whereArgs: [id]);
-    return result;
-  }
-
-//------------------[RETOUR  FUNCTIONS]------------------
-  Future<int> insertRet(Retour retour) async {
-    final db = await main();
-    return db.insert(
-      'retour',
-      retour.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
-  Future<List<Retour>> fetchRet() async {
-    final db = await main();
-    final List<Map<String, dynamic>> maps = await db.query('retour');
-    return List.generate(maps.length, (i) {
-      return Retour(
-        id: maps[i]['id'],
-        composant: maps[i]['FK_composant'],
-        date: maps[i]['date'],
-        etat: maps[i]['etat'],
-      );
-    });
-  }
-
-  Future<int> deleteRet(int id) async {
-    //returns number of items deleted
-    final db = await main();
-
-    int result = await db.delete("retour", //table name
-        where: "id = ?",
-        whereArgs: [id] // use whereArgs to avoid SQL injection
-    );
-    return result;
-  }
-
-  Future<int> updateRet(int id, Retour item) async {
-    // returns the number of rows updated
-
-    final db = await main();
-
-    int result = await db
-        .update("retour", item.toMap(), where: "id = ?", whereArgs: [id]);
-    return result;
-  }
-
 }

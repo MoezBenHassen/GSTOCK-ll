@@ -16,16 +16,20 @@ class _MyLoginState extends State<MyLogin> {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xFF2C2F33),
         body: Stack(
           children: [
-            Container(),
             Container(
-              padding: EdgeInsets.only(left: 35, top: 130),
-              child: Text(
-                'Welcome\nBack',
-                style: TextStyle(color: Colors.white, fontSize: 33),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image:AssetImage('assets/login.png'), fit: BoxFit.cover
+                ),
               ),
+             /* padding: EdgeInsets.only(left: 35, top: 130),
+              child: Text(
+                'Welcome\n\n',
+                style: TextStyle(color: Color(0xFFFFA53E), fontSize: 33),
+              ),*/
             ),
             SingleChildScrollView(
               child: Container(
@@ -35,17 +39,25 @@ class _MyLoginState extends State<MyLogin> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(left: 35, right: 35),
+                      margin: EdgeInsets.only(left: 10, right: 10),
                       child: Column(
                         children: [
                           TextField(
                             controller:nameController,
                             style: TextStyle(color: Colors.black),
                             decoration: InputDecoration(
-                                fillColor: Colors.grey.shade100,
+                                enabledBorder: UnderlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFFFA53E),
+                                  ),
+                                ),
+                                fillColor: Color(0xFF2C2F33),
                                 filled: true,
-                                hintText: "Name",
-                                border: OutlineInputBorder(
+                                labelText: 'Name',
+                                labelStyle: TextStyle(color: Color(0xFFFFA53E)),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(color: Color(0xFFFFA53E), width: 2.0),
                                   borderRadius: BorderRadius.circular(10),
                                 )),
                           ),
@@ -57,10 +69,18 @@ class _MyLoginState extends State<MyLogin> {
                             style: TextStyle(),
                             obscureText: true,
                             decoration: InputDecoration(
-                                fillColor: Colors.grey.shade100,
+                                enabledBorder: UnderlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFFFA53E),
+                                  ),
+                                ),
+                                fillColor: Color(0xFF2C2F33),
                                 filled: true,
-                                hintText: "Password",
-                                border: OutlineInputBorder(
+                                labelText: "Password",
+                                labelStyle: TextStyle(color: Color(0xFFFFA53E)),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(color: Color(0xFFFFA53E), width: 2.0),
                                   borderRadius: BorderRadius.circular(10),
                                 )),
                           ),
@@ -68,18 +88,19 @@ class _MyLoginState extends State<MyLogin> {
                             height: 40,
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
                                 'Sign in',
                                 style: TextStyle(
-                                    fontSize: 27, fontWeight: FontWeight.w700),
+                                  color: Color(0xFFFFA53E),
+                                    fontSize: 18, fontWeight: FontWeight.w700),
                               ),
                               CircleAvatar(
                                 radius: 30,
-                                backgroundColor: Color(0xff4c505b),
+                                backgroundColor: Color(0xFF2C2F33),
                                 child: IconButton(
-                                    color: Colors.white,
+                                    color:Color(0xFFFFA53E),
                                     onPressed: () async {
                                       var admins = await Dbcreate().fetchAdmin();
                                       for (var map in admins){
@@ -90,7 +111,7 @@ class _MyLoginState extends State<MyLogin> {
 
                                     },
                                     icon: Icon(
-                                      Icons.arrow_forward,
+                                      Icons.arrow_forward_ios ,
                                     )),
                               )
                             ],
@@ -99,7 +120,7 @@ class _MyLoginState extends State<MyLogin> {
                             height: 40,
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               TextButton(
                                 onPressed: () {
@@ -107,11 +128,11 @@ class _MyLoginState extends State<MyLogin> {
                                 },
                                 child: Text(
                                   'Sign Up',
-                                  textAlign: TextAlign.left,
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: Color(0xff4c505b),
-                                      fontSize: 18),
+                                      decoration: TextDecoration.none,
+                                      color: Color(0xFFFFA53E),
+                                      fontSize: 14),
                                 ),
                                 style: ButtonStyle(),
                               ),
